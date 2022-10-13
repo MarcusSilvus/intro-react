@@ -1,14 +1,31 @@
-const incrementBtn = document.getElementById("increment-btn")
-const countDisplay = document.getElementById("count-display")
+const reactContentRoot = document.getElementById('root')
 
-let count = 0
+// createElement takes 3 arguments: name of elememt, prop, and content that goes in the element
+// const myFirstElement = React.createElement("ul", null, [
+//   React.createElement("li", null, "item1"),
+//   React.createElement("li", null, "item2")
+// ])
 
 
 
-incrementBtn.addEventListener("click", ()=>{
-  count++
-  console.log(count)
-  countDisplay.innerText = count
-})
+// const myJSXElement = (
+//   <ul>
+//     <li>item1</li>
+//     <li>item2</li>
+//     <li>{ myItem }</li>
+//   </ul>
+// )
 
-// console.log(incrementBtn)
+const App = () => {     // same thing as function App() {}
+  const myItem = 'item3'
+
+  return (
+    <ul>
+    <li>item1</li>
+    <li>item2</li>
+    <li>{ myItem }</li>
+  </ul>
+  )
+}
+
+ReactDOM.render(<App />, reactContentRoot)
