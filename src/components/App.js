@@ -1,21 +1,31 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import CountButton from "./CountButton/CountButton"
 import SearchBar from "./SearchBar/SearchBar"
-
-const products = [
-  'tooth paste',
-  'tooth brush',
-  'mouth wash',
-  'dental floss',
-  'mouth guard'
-]
+import Button from "./Button/Button"
 
 const App = () => {
+
+  const [productState, setProductState] = useState([])
+
+  useEffect(() => {
+
+    fetch('https://fakestoreapi.com/products')
+      .then(res=>res.json())
+      .then((productsArray) => {
+        const newProductsState = productsArray.map((product) => {
+          return product.title
+        })
+        setProductState(newProductsState)
+      })
+  }, [])
+
+  const hasProducts = productState.length > 0 
+
   return (
     <div>
-
-      <CountButton incrementBy={5} buttonColor={'blue'} />
-      <SearchBar products={products} />
+      <Button>Button</Button>
+      <CountButton incrementBy={1} buttonColor={'blue'} />
+      {hasProducts ? <SearchBar products={productState} /> : "Loading..."}
       {/* <SearchBar products={["bike rack", "mountain bike", "helmet"]} />  */}
     </div>
   )

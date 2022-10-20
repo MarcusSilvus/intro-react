@@ -12,19 +12,19 @@ function CountButton(props) {    // or const CountButton = () => {}
 
   useEffect(() => {
     console.log('Called when the component mounts')
-  }, [])
+  }, []) // useEffect must have the array arguement 
 
   useEffect(() => {
     console.log('Called when the component mounts or the count is updated')
   }, [count])
 
   useEffect(() => {
-    if(count === 50) {
+    if(count === 10) {
       setCount(0)
     }
   }, [count])
 
-  
+
 
   return (
   <div>
